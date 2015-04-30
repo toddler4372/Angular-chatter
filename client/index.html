@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" ng-app="chatter">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatter</title>
+    <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/zurb/foundation-apps-1.1.0.css">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/zurb/foundation-apps-1.1.0.min.css">
+    <script src="/assets/js/foundation.js"></script>
+    <script src="/assets/js/templates.js"></script>
+    <script src="/assets/js/routes.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <script src="http://cdn.jsdelivr.net/zurb/foundation-apps-1.1.0.js"></script>
+    <script src="http://cdn.jsdelivr.net/zurb/foundation-apps-1.1.0.min.js"></script>
+     
+    <script src="http://cdn.jsdelivr.net/zurb/foundation-apps-templates-1.1.0.js"></script>
+    <script src="http://cdn.jsdelivr.net/zurb/foundation-apps-templates-1.1.0.min.js"></script>
+  </head>
+  <body ng-controller="MainCtrl">
+    <div class="grid-frame vertical">
+      <div class="grid-content shrink" style="padding: 0;">
+        <ul class="primary condense menu-bar">
+          <li><a><strong>chatter</strong></a></li>
+        </ul>
+      </div>
+      <div ui-view class="grid-content">
+      </div>
+    </div>
+  </body>
+</html>

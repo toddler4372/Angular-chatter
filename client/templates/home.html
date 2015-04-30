@@ -1,0 +1,21 @@
+---
+name: home
+url: /
+---
+<br>
+<div class="grid-container">
+    <div class="grid-block">
+      <div class="grid-block">
+      	<div id="chatBlock" class="small-12 medium-8 grid-content medium-order-1">
+        	<form ng-submit="addPost()">
+        		<input type="text" placeholder="Add post..." ng-model="title"></input>
+        		<a class="button" type="submit" ng-click="addPost()">Post</a>
+        	</form>
+        	<div ng-repeat="post in posts | orderBy: '-upvotes'">{{post.title}} - upvotes: {{post.upvotes}}</div>
+        </div>
+        <div id="contacts" class="small-12 medium-4 grid-content medium-order-2">
+        	<div>{{test}}</div>
+        </div>
+     </div>
+   </div>
+</div>
