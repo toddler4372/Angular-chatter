@@ -17,14 +17,21 @@
       function($scope){
         $scope.test = 'Contacts';
         $scope.posts = [
-          {title: 'post 1', upvotes: 5},
-          {title: 'post 2', upvotes: 2},
-          {title: 'post 2', upvotes: 15},
-          {title: 'post 4', upvotes: 9},
-          {title: 'post 5', upvotes: 4}
+        {title: 'test post', upvotes: 5}
         ];
-        $scope.addPost = function(){
-          $scope.posts.push({title: 'A new post!', upvotes: 0});
+        $scope.addPost = function(post){
+          if(!post.title || post.title === '') { return; } 
+          if(!post.upvotes) { post.upvotes = 0 } 
+          $scope.posts.push({
+            title: post.title, 
+            link: post.link,
+            upvotes: post.upvotes
+          });
+          post.title = '';
+          post.link = '';
+        };
+        $scope.incrementUpvotes = function(post) {
+          post.upvotes += 1;
         };
 }]);
 
@@ -46,3 +53,22 @@
   }
 
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
