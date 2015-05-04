@@ -10,22 +10,37 @@
     'foundation.dynamicRouting',
     'foundation.dynamicRouting.animations'
   ])
+    .factory('posts', [function(){
+      var o = {
+        posts: []
+      };
+      return o;
+    }])
     .config(config)
     .run(run)
+    
+    // inject posts service into main controller
     .controller('MainCtrl', [
-      '$scope', 
-      function($scope){
-        $scope.test = 'Contacts';
-        $scope.posts = [
-        {title: 'test post', upvotes: 5}
-        ];
+      '$scope', 'posts',
+      function($scope, posts){
+        // bind $scope.posts to posts array in factory
+        $scope.posts = posts.posts;
+        $scope.body = posts.body;
+        $scope.test = 'Comments';
+        $scope.comments = posts.comments;
+        
         $scope.addPost = function(post){
           if(!post.title || post.title === '') { return; } 
           if(!post.upvotes) { post.upvotes = 0 } 
           $scope.posts.push({
             title: post.title, 
             link: post.link,
-            upvotes: post.upvotes
+            upvotes: post.upvotes,
+            comments: post.comments,
+            comments: [
+              {author: 'Joe', body: 'Cool post!', upvotes: 0},
+              {author: 'Todd', body: 'This is a crappy post!', upvotes: 2}
+            ]
           });
           post.title = '';
           post.link = '';
@@ -33,7 +48,26 @@
         $scope.incrementUpvotes = function(post) {
           post.upvotes += 1;
         };
-}]);
+    }])
+    // Posts controller
+    .controller('PostsCtrl', [
+      '$scope',
+      '$stateParams',
+      'posts',
+      function($scope, $stateParams, posts){
+        $scope.post = posts.posts[$stateParams.id];
+        $scope.comment = {};
+
+        $scope.addComment = function(comment){
+          if(!this.comment.body === '') { return; }
+          $scope.comment.push({
+            body: comment.body,
+            author: 'user',
+            upvotes: 0
+          });
+          comment.body = '';
+        };
+    }])
 
   config.$inject = ['$urlRouterProvider', '$locationProvider'];
 
