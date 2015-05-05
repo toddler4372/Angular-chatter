@@ -56,11 +56,12 @@
       'posts',
       function($scope, $stateParams, posts){
         $scope.post = posts.posts[$stateParams.id];
-        $scope.comment = {};
+        $scope.comments = [];
+        $scope.comments.body
 
         $scope.addComment = function(comment){
           if(!this.comment.body === '') { return; }
-          $scope.comment.push({
+          $scope.comments.push({
             body: comment.body,
             author: 'user',
             upvotes: 0

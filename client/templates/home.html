@@ -4,10 +4,91 @@ url: /
 ---
 <br>
 <div class="grid-container">
-    <div class="grid-block">
-      <div class="grid-block">
+  <div class="grid-container contain-left order-1">
+  <div class="grid-block" style="margin:0;">
+    
+          <div class="card order-2 half-width">
+            <div ng-repeat="post in posts | orderBy: '-upvotes'" class="card-section">
+              <a ng-click="incrementUpvotes(post)"><img zf-iconic="" icon="thumb" size="medium"></a>
+              <a ng-show="post.link" href="{{post.link}}">
+                {{post.title}}
+              </a>
+              <span ng-hide="post.link" class="break-word">
+                {{post.title}}
+              </span> | <span ng-model="post.upvotes">upvotes: </span><span class="success badge">{{post.upvotes}}</span>
+              <span>
+                  <a href="#/posts/{{$index}}">Comments</a>
+              </span>
+            </div>
+        </div>
 
-        <div id="chatBlock" class="small-12 medium-8 grid-content medium-order-1">
+        <div class="grid-block order-1" style="margin:0;">
+          <form ng-submit="addPost(post)">
+            <input type="text" ng-model="post.title" placeholder="Add post..."></input>
+            <br>
+            <input type="text" ng-model="post.link" placeholder="Add link..."></input>
+            <br>
+            <button type="submit" class="large button">Post</button>
+          </form>
+        </div>
+
+    </div>
+
+</div>
+<div class="grid-container contain-right order-2">
+    
+      <div id="contacts">
+          <div ng-controller="PostsCtrl">
+
+            <div class="page-header">
+              <h5>
+                <a ng-show="post.link" href="{{post.link}}">
+                  {{post.title}}
+                </a>
+                <span ng-hide="post.link">
+                  {{post.title}}
+                </span>
+              </h5>
+            </div>
+
+            <div ng-repeat="comment in comments | orderBy:'-upvotes'">
+              <span class="glyphicon glyphicon-thumbs-up"
+                ng-click="incrementUpvotes(comment)"><img zf-iconic="" icon="thumb" size="medium"></span>
+              <span class="success badge">{{comment.upvotes}}</span> - by {{comment.author}}
+              <span>{{comment.body}}</span>
+            </div>
+
+            <form ng-submit="addComment(comment)">
+              <h3>Add a new comment</h3>
+
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Comment" ng-model="comment.body"></input>
+              </div>
+              <button type="submit" class="large button">Post</button>
+            </form>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--<div class="grid-block">
+    <div id="chatBlock" class="grid-block large-order-1">
+      <div class="grid-block">
+        <div class="grid-block">
           <div class="card">
             <div ng-repeat="post in posts | orderBy: '-upvotes'" class="card-section">
               <a ng-click="incrementUpvotes(post)"><img zf-iconic="" icon="thumb" size="medium"></a>
@@ -22,19 +103,21 @@ url: /
               </span>
             </div>
           </div>
+        </div>
         <br>
-        <form ng-submit="addPost(post)">
-          <input type="text" ng-model="post.title" placeholder="Add post..."></input>
-          <br>
-          <input type="text" ng-model="post.link" placeholder="Add link..."></input>
-          <br>
-          <button type="submit" class="large button">Post</button>
-        </form>
+        <div class="grid-block">
+          <form ng-submit="addPost(post)">
+            <input type="text" ng-model="post.title" placeholder="Add post..."></input>
+            <br>
+            <input type="text" ng-model="post.link" placeholder="Add link..."></input>
+            <br>
+            <button type="submit" class="large button">Post</button>
+          </form>
         </div>
       </div>
+    </div>
 
-      <div class="grid-block">
-        <div id="contacts" class="small-12 medium-4 grid-content medium-order-2">
+        <div id="contacts" class="grid-block large-order-2">
           <div ng-controller="PostsCtrl">
 
             <div class="page-header">
@@ -48,11 +131,11 @@ url: /
               </h5>
             </div>
 
-            <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
+            <div ng-repeat="comment in comments | orderBy:'-upvotes'">
               <span class="glyphicon glyphicon-thumbs-up"
-                ng-click="incrementUpvotes(comment)">+</span>
-              {{comment.upvotes}} - by {{comment.author}}
-              <span style="font-size:20px; margin-left:10px;">{{comment.body}}</span>
+                ng-click="incrementUpvotes(comment)"><img zf-iconic="" icon="thumb" size="medium"></span>
+              <span class="success badge">{{comment.upvotes}}</span> - by {{comment.author}}
+              <span>{{comment.body}}</span>
             </div>
 
             <form ng-submit="addComment(comment)">
@@ -63,12 +146,9 @@ url: /
               </div>
               <button type="submit" class="large button">Post</button>
             </form>
-
-          </div>
-        </div>
       </div>
-
-     </div>
-   </div>
-</div>   
+    </div>
+  </div>
+</div>-->
+  
 
