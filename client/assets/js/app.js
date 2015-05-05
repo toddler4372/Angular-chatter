@@ -30,7 +30,7 @@
         $scope.comments = posts.comments;
         
         $scope.addPost = function(post){
-          if(!post.title || post.title === '') { return; } 
+          if(!post.title || post.title === '') { return; }
           if(!post.upvotes) { post.upvotes = 0 } 
           $scope.posts.push({
             title: post.title, 
@@ -49,6 +49,25 @@
           post.upvotes += 1;
         };
     }])
+
+    .controller('slide', function(
+        $window
+      ){
+        this.items = [+new $window.Date];
+        
+        this.push = function() {
+          this.items.push(+new $window.Date);
+        };
+        
+        this.pop = function() {
+          this.items.pop();
+        };
+        
+        this.moveLast = function() {
+          this.items.splice(+new $window.Date % (this.items.length - 1), 0, this.items.splice(this.items.length - 1, 1)[0]);
+        };
+      })
+
     // Posts controller
     .controller('PostsCtrl', [
       '$scope',
